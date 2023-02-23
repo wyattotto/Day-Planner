@@ -2,7 +2,8 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var dateDisplayEL =$('#currentDay')
-var saveBtnEL = $('.saveBtn')
+ var saveBtnEL =$('#saveBtn')
+ var now = dayjs().hour()
 
 
 
@@ -15,8 +16,16 @@ $(document).ready(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
+  // loadData()
+  // function loadData()
+  // $(".description").each.html(localStorage.myData)
   
-    
+  // $("saveBtnEL").click(function(){
+  //   var disTxt = $("text").val()
+  //   var data = <p> + text + </p>
+
+  //   localStorage.myData=data
+  // })
   // })
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -40,24 +49,44 @@ $(document).ready(function () {
   const eventElements = document.querySelectorAll (".time-block") 
   // for (let i = 0; i < eventElements.length; i++){
   //   const eventEl = eventElements[i];
-  $(".time-block").each (function updaterMethod(){
-    const eventHour = parseInt ($(this).attr("id").split("-")[1])
-    if (eventHour < now){
-    $(this).removeClass("present future").addClass("past") 
-    }
-    else if (eventHour === now){
-      $(this).removeClass("past future").addClass("present")
-    }
-    else {
-    $(this).removeClass("past present").addClass("future")
-    }
-
-  })
-   updaterMethod() 
+  // $(".time-block").each (function updaterMethod(){
+  //   const eventHour = parseInt ($(this).attr("id").split("-")[1])
+  //   if (eventHour < now){
+  //   $(this).removeClass("present future").addClass("past") 
+  //   }
+  //   else if (eventHour === now){
+  //     $(this).removeClass("past future").addClass("present")
+  //   }
+  //   else {
+  //   $(this).removeClass("past present").addClass("future")
+  //   }
+  //   // setInterval(updaterMethod, 1000)
+  // })
+  
+  
+    
     
 
 });
 
+
+function time (){
+
+$(".time-block").each (function updaterMethod(){
+  const eventHour = parseInt ($(this).attr("id").split("-")[1])
+  if (eventHour < now){
+  $(this).removeClass("present future").addClass("past") 
+  }
+  else if (eventHour === now){
+    $(this).removeClass("past future").addClass("present")
+  }
+  else {
+  $(this).removeClass("past present").addClass("future")
+  }
+  
+})
+}
+setInterval(time, 1000)
 
 
 
